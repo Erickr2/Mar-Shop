@@ -1,8 +1,8 @@
-import { SeedProduct } from "@/interfaces"
+import { Product } from "@/interfaces"
 import { ProductGridItme } from "./ProductGridItme"
 
 interface Props {
-    products: SeedProduct[]
+    products: Product[]
 }
 
 export const ProductGrid = ({ products }: Props) => {
