@@ -2,7 +2,6 @@ import { Title } from "@/components";
 import { initialData } from "@/seed/seed";
 import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
 import { IoCardOutline } from "react-icons/io5";
 
 const productINCart = [
@@ -12,15 +11,13 @@ const productINCart = [
 ]
 
 interface Props {
-  params: {
-    id: string;
-  }
+  params: Promise<{ id: string }>;
 }
 
 
-export default function ({ params }: Props) {
+export default async function OrderPage({ params }: Props) {
 
-  const { id } = params;
+  const { id } = await params;
 
   return (
     <div className="flex justify-center items-center mb-72 px-10 sm:px-0 ">

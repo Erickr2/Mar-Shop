@@ -3,7 +3,7 @@ import { geistMono, geistSans } from "../config/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Mar | Shop",
+  title: "Markadush | Shop",
   description: "Tienda virtual",
 };
 

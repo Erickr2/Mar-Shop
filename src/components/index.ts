@@ -10,3 +10,4 @@ export * from "./ui/sidebar/Sidebar";
 export * from "./ui/title/Title";
 export * from "./ui/topMenu/topMenu";
 export * from "./ui/footer/footer";
+export * from "./ui/pagination/Pagination";

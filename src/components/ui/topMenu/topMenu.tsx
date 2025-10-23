@@ -15,7 +15,7 @@ import { IoSearchOutline, IoCartOutline } from 'react-icons/io5'
         {/* Logo */}
         <div className=''>
             <Link href="/">
-            <span className={`${titleFont.className} antialiased font-bold`}>Mar</span>
+            <span className={`${titleFont.className} antialiased font-bold`}>Markadush</span>
             <span > | Shop</span>
             </Link>
         </div>
@@ -24,9 +24,9 @@ import { IoSearchOutline, IoCartOutline } from 'react-icons/io5'
 
         <div className='hidden sm:block'>
             <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/">Home</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/category/men">Mens</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/category/women">Womens</Link>
-            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/category/kid">Childs</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/gender/men">Mens</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/gender/women">Womens</Link>
+            <Link className='m-2 p-2 rounded-md transition-all hover:bg-gray-100' href="/gender/kid">Childs</Link>
         </div>
 
         {/* search, cart, menu */}

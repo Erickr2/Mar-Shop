@@ -4,7 +4,7 @@ import { useUiStore } from '@/store';
 import clsx from 'clsx';
 import Link from 'next/link';
 import React from 'react'
-import { IoCloseOutline, IoLogIn, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
+import { IoCloseOutline, IoLogInOutline, IoLogOutOutline, IoPeopleOutline, IoPersonOutline, IoSearchOutline, IoShirtOutline, IoTicketOutline } from 'react-icons/io5'
 
 export const Sidebar = () => {
 

@@ -1,36 +1,58 @@
-'use server';
+"use server";
 
-import { PrismaClient } from "@/generated/prisma";
+import { Gender, PrismaClient } from "@/generated/prisma";
 
-
-export const getPaginatedProductsWithImages = async() => {
-
-    const prisma = new PrismaClient();
-    
-    try {
-        
-        const products = await prisma.product.findMany({
-            take: 12,
-            include : {
-                ProductImage: {
-                    take: 2,
-                    select: {
-                        url: true
-                    }
-                }
-            }
-        })
-
-        return {
-            products: products.map( product => ({
-                currentPage: 1,
-                totalPages: 10,
-                ...product,
-                images: product.ProductImage.map( img => img.url)
-            }))
-        }
-
-    } catch (error) {
-        throw new Error('No se cargaron los productos')
-    }
+interface PaginationOptions {
+  page?: number;
+  take?: number;
+  gender?: Gender;
 }
+
+export const getPaginatedProductsWithImages = async ({
+  page = 1,
+  take = 10,
+  gender
+}: PaginationOptions) => {
+  if (isNaN(Number(page))) page = 1;
+  if (page < 1) page = 1;
+
+  const prisma = new PrismaClient();
+
+  try {
+    const products = await prisma.product.findMany({
+      take: take,
+      skip: (page - 1) * take,
+      include: {
+        ProductImage: {
+          take: 2,
+          select: {
+            url: true,
+          },
+        },
+      },
+      where: {
+        gender: gender,
+      }
+    });
+    
+    const totalCount = await prisma.product.count({
+      where: {
+        gender: gender,
+      }
+    });
+    const totalPages = Math.ceil(totalCount / take);
+    console.log(gender);
+
+    return {
+      currentPage: page,
+      totalPages: totalPages,
+      products: products.map((product) => ({
+        ...product,
+        images: product.ProductImage.map((img) => img.url),
+      })),
+    };
+  } catch (error) {
+    throw new Error("No se cargaron los productos");
+    console.log(error);
+  }
+};
