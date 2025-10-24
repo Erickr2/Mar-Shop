@@ -3,7 +3,10 @@ import { geistMono, geistSans } from "../config/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Markadush | Shop",
+  title: {
+    template: '%s - Markadush | Shop',
+    default:'Home - Markadush | Shop'
+  },
   description: "Tienda virtual",
 };
 
