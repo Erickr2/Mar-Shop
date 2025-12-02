@@ -1,6 +1,7 @@
 import { Prisma, PrismaClient } from "../generated/prisma";
 import { initialData } from "./seed";
 const prisma = new PrismaClient();
+
 const productData: Prisma.ProductCreateInput[] = initialData.products.map(
   (product) => ({
     title: product.title,
@@ -20,15 +21,23 @@ const productData: Prisma.ProductCreateInput[] = initialData.products.map(
     ProductImage: { create: product.images.map((image) => ({ url: image })) },
   })
 );
+
+const { users } = initialData;
+
 export async function main() {
-    try {
-        await prisma.productImage.deleteMany();
-        await prisma.product.deleteMany();
-        await prisma.category.deleteMany();
-        
-    } catch (error) {
-        console.log('Error seed database: ', error);
-    }
+  try {
+    await prisma.user.deleteMany();
+    await prisma.productImage.deleteMany();
+    await prisma.product.deleteMany();
+    await prisma.category.deleteMany();
+  } catch (error) {
+    console.log("Error seed database: ", error);
+  }
+
+  await prisma.user.createMany({
+    data: users
+  })
+
   for (const u of productData) {
     await prisma.product.create({ data: u });
   }

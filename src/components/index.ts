@@ -11,3 +11,5 @@ export * from "./ui/title/Title";
 export * from "./ui/topMenu/topMenu";
 export * from "./ui/footer/footer";
 export * from "./ui/pagination/Pagination";
+
+export * from "./provider/provider";

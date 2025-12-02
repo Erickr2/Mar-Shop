@@ -11,6 +11,7 @@ import { StockLable } from "@/components/product";
 import { titleFont } from "@/config/fonts";
 import { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
+import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -71,17 +72,7 @@ export default async function SlugPage({ params }: Props) {
         </h1>
         <p className="text-lg mb-5 ">${product.price}</p>
 
-        {/* Selector de tallas */}
-        <SizeSelector
-          availableSizes={product.sizes}
-          selectedSize={product.sizes[0]}
-        />
-
-        {/* Selector de cantidad */}
-        <QuantitySelector quantity={2} />
-
-        {/* boton */}
-        <button className="btn-primary my-5">Agregar al carrito</button>
+        <AddToCart product={product} />
 
         {/* desc */}
         <h3 className="font-bold text-sm">Description</h3>
