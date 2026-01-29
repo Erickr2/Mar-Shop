@@ -25,9 +25,9 @@ export const TopMenu = () => {
       <div className="">
         <Link href="/">
           <span className={`${titleFont.className} antialiased font-bold`}>
-            Markadush
+            After
           </span>
-          <span> | Shop</span>
+          <span> | Company</span>
         </Link>
       </div>
 
@@ -51,12 +51,6 @@ export const TopMenu = () => {
           href="/gender/women"
         >
           Womens
-        </Link>
-        <Link
-          className="m-2 p-2 rounded-md transition-all hover:bg-gray-100"
-          href="/gender/kid"
-        >
-          Childs
         </Link>
       </div>
 

@@ -8,7 +8,8 @@
 4. Levantar la BD ```docker compose up -d```
 5. Correr migraciones de Prisma ```npx prisma migrate dev```
 6. Ejecutar seed ```npm run seed```
-7. Correr el proyecto ```npm run dev ```
+7. Limpiar localStorage
+8. Correr el proyecto ```npm run dev ```
 
 
 ## Correr en prod

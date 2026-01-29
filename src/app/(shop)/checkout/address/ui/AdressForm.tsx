@@ -20,14 +20,27 @@ interface FormInputs {
   rememberAddress: boolean;
 }
 
+interface UserAddres {
+   firstName: string;
+  lastName: string;
+  address: string;
+  secondAddress?: string;
+  postalCode: string;
+  city: string;
+  country: string;
+  phone: string;
+  userId: string;
+}
+
 interface Props {
   countries: Country[];
-  userStoreAddress?: Partial<Address>;
+  userStoreAddress?: Partial<UserAddres>;
 }
 
 export const AdressForm = ({ countries, userStoreAddress = {} }: Props) => {
 
   const router = useRouter();
+  const {userId, ...restUserDbAddress} = userStoreAddress;
 
   const {
     handleSubmit,
@@ -36,7 +49,7 @@ export const AdressForm = ({ countries, userStoreAddress = {} }: Props) => {
     reset
   } = useForm<FormInputs>({
     defaultValues: {
-      ...(userStoreAddress as any),
+      ...(restUserDbAddress as any),
       rememberAddress: false
     },
   });
@@ -56,9 +69,9 @@ export const AdressForm = ({ countries, userStoreAddress = {} }: Props) => {
   
 
   const onSubmit = async(data: FormInputs) => {
-    setAddress(data);
+    const { rememberAddress, secondAddress,  ...rest } = data;
 
-    const { rememberAddress, ...rest } = data;
+    setAddress(rest);
 
     if( data.rememberAddress ){
       await setUserAddress(rest, session!.user.id);
