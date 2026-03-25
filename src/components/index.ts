@@ -12,4 +12,8 @@ export * from "./ui/topMenu/topMenu";
 export * from "./ui/footer/footer";
 export * from "./ui/pagination/Pagination";
 
-export * from "./provider/provider";
+export * from "./providers/Providers";
+export * from "./paypal/PaypalButton";
+
+export * from "./orders/OrderStatus";
+

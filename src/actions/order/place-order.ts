@@ -12,7 +12,7 @@ interface ProductToOrder {
 
 export const PlaceToOrder = async (
   productIds: ProductToOrder[],
-  address: Address
+  address: Address,
 ) => {
   const session = await auth();
   const userId = session?.user.id;
@@ -37,7 +37,7 @@ export const PlaceToOrder = async (
   // Calc amount
   const itemsInOrder = productIds.reduce(
     (count, product) => count + product.quantity,
-    0
+    0,
   );
 
   // calc tax, subtotal y total
@@ -57,7 +57,7 @@ export const PlaceToOrder = async (
 
       return totals;
     },
-    { subTotal: 0, tax: 0, total: 0 }
+    { subTotal: 0, tax: 0, total: 0 },
   );
 
   // create DB transaction
@@ -120,10 +120,15 @@ export const PlaceToOrder = async (
 
       // 3.- create order direction
       const { country, ...restAddress } = address;
-      console.log({ restAddress });
       const orderAddress = await tx.orderAddress.create({
         data: {
-          ...restAddress,
+          firstName: restAddress.firstName,
+          lastName: restAddress.lastName,
+          address: restAddress.address,
+          seconAddress: restAddress.secondAddress,
+          postalCode: restAddress.postalCode,
+          city: restAddress.city,
+          phone: restAddress.phone,
           countryId: country,
           orderId: order.id,
         },
@@ -137,13 +142,10 @@ export const PlaceToOrder = async (
     });
 
     return {
-        ok: true,
-        order: prismaTx.order,
-        prismaTx: prismaTx
-    }
-
-
-
+      ok: true,
+      order: prismaTx.order,
+      prismaTx: prismaTx,
+    };
   } catch (error: any) {
     return {
       ok: false,

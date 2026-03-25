@@ -9,6 +9,7 @@ export default async function AddressPage() {
   const countries = await getCountries();
 
   const session = await auth();
+  console.log({session});
 
   if ( !session?.user ) {
     return (
