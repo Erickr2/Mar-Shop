@@ -1,9 +1,8 @@
 "use client";
 
+import { changeUserRol } from "@/actions";
 import type { User } from "@/interfaces";
-import Link from "next/link";
 import React from "react";
-import { IoCardOutline } from "react-icons/io5";
 
 interface Props {
   users: User[];
@@ -51,11 +50,10 @@ export const UsersTable = ({ users }: Props) => {
              
              <select 
              value={user.rol}
-             onChange={e => console.log(e.target.value)}
+             onChange={e => changeUserRol(user.id, e.target.value)}
              className="text-sm w-full p-2 text-gray-900 ">
                 <option value="admin">Admin</option>
                 <option value="user">User</option>
-                <option value=""></option>
 
              </select>
 
