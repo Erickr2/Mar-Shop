@@ -12,6 +12,7 @@ import 'swiper/css/thumbs';
 // Import Swiper styles
 import './slideShow.css';
 import Image from 'next/image';
+import { ProductImage } from '../product-image/ProductImage';
 
 interface Props {
   images: string[];
@@ -44,10 +45,10 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
         {
           images.map(img => (
             <SwiperSlide key={img}>
-              <Image
+              <ProductImage
                 width={1024}
                 height={600}
-                src={`/products/${img}`}
+                src={img}
                 alt={title}
                 className='rounded-lg object-fill'
               />
@@ -68,10 +69,10 @@ export const ProductSlideShow = ({ images, title, className }: Props) => {
          {
           images.map(img => (
             <SwiperSlide key={img}>
-              <Image
-                width={200}
-                height={200}
-                src={`/products/${img}`}
+               <ProductImage
+                width={1024}
+                height={600}
+                src={img}
                 alt={title}
                 className='rounded-lg object-fill'
               />

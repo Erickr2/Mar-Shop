@@ -4,12 +4,10 @@ import { GetproductBySlug } from "@/actions";
 import {
   ProductMobileSlideShow,
   ProductSlideShow,
-  QuantitySelector,
-  SizeSelector,
 } from "@/components";
 import { StockLable } from "@/components/product";
 import { titleFont } from "@/config/fonts";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { AddToCart } from "./ui/AddToCart";
 
@@ -19,7 +17,6 @@ interface Props {
 
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const slug = (await params).slug;
 
